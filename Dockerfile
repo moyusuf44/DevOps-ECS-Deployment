@@ -1,25 +1,26 @@
-# Stage 1
-FROM ubuntu:22.04 AS build
+# Stage 1: Build Stage 
 
-RUN apt update && apt install -y curl
+FROM ubuntu:22.04 AS build 
 
-RUN curl -fsSL https://code-server.dev/install.sh | sh
+RUN apt update && apt install curl -y 
+RUN curl -fsSL https://code-server.dev/install.sh | sh 
 
+# Stage 2: Runtime Stage 
 
-# Stage 2
-FROM ubuntu:22.04 AS runtime
+FROM ubuntu:22.04 AS runtime-stage 
 
-RUN useradd -m master
+RUN useradd -m master 
 
-COPY --from=build /usr/bin/code-server /usr/bin/code-server
-COPY --from=build /usr/lib/code-server /usr/lib/code-server
+WORKDIR /my-app 
 
-USER master
+COPY --from=build /usr/bin/code-server /usr/bin/code-server 
+COPY --from=build /usr/lib/code-server /usr/lib/code-server 
 
-WORKDIR /home/master
+ENV PASSWORD=admin123
+
+USER master 
 
 EXPOSE 8080
 
 CMD ["code-server", "--bind-addr", "0.0.0.0:8080"]
-
 
