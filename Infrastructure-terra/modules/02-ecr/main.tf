@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "this" {
-    name = "code-server"
+    name = "code-server-terra"
 
     image_scanning_configuration {
     

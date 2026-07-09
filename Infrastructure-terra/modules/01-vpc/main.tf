@@ -1,4 +1,3 @@
-# 01-vpc
 module "vpc" {
     source         = "terraform-aws-modules/vpc/aws"
 
@@ -20,4 +19,23 @@ module "vpc" {
         Terraform  = true 
         Environment = "dev"
     }
+}
+
+resource "aws_security_group" "this" {
+  name   = "code-server-terra-sg"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
