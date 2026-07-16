@@ -4,13 +4,26 @@ variable "cidr_block" {
 }
 
 variable "domain_name" {
-  type = string
+  type        = string
 }
 
 variable "subdomain" {
-  type = string
+  type        = string
 }
 
 variable "zone_id" {
-  type = string
+  type        = string
+}
+
+variable "cloudflare_api_token" {
+  type        = string
+}
+
+variable "zone_name" {
+  type        = string 
+  description = "Cloudflare DNS zone name"
+}
+
+variable "vpc_id" {
+  type = string 
 }

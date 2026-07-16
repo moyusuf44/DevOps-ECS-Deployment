@@ -6,7 +6,11 @@ variable "subnet_ids" {
   type = list(string)
 }
 
-variable "security_group" {
+# variable "security_group" {
+#   type = string
+# }
+
+variable "certificate_arn" {
   type = string
 }
 
