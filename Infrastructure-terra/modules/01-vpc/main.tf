@@ -31,10 +31,6 @@ resource "aws_security_group" "this" {
     to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-
-    # security_groups = [
-    #   var.alb_security_group_id
-    # ]
   }
 
   egress {

@@ -27,3 +27,36 @@ variable "zone_name" {
 variable "vpc_id" {
   type = string 
 }
+
+variable "code_server_password" {
+  type = string 
+  sensitive = true 
+}
+
+variable "cluster_name" {
+  type = string
+}
+
+variable "image_id" {
+  type = string 
+}
+
+variable "region_id" {
+  type = string 
+}
+
+variable "cpu" {
+  type = string 
+}
+
+variable "memory" {
+  type = string 
+}
+
+variable "desired_count" {
+  type = string 
+}
+
+variable "health_check_path" {
+  type = string 
+}

@@ -5,7 +5,6 @@ resource "aws_lb" "this" {
     
     security_groups = [aws_security_group.alb.id]
     
-    #security_groups = [var.security_group]
     subnets = var.subnet_ids
 }
 
@@ -21,7 +20,7 @@ resource "aws_lb_target_group" "this" {
     }
 
     health_check {
-        path = "/"
+        path = var.health_check_path
         port = "8080"
         matcher = "200-399"
     }

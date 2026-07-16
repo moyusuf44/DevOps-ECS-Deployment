@@ -11,7 +11,7 @@ terraform {
   }
 }
 provider "aws" {
-  region = "us-east-1"
+  region = var.region_id
 }
 provider "cloudflare" {
   api_token = var.cloudflare_api_token

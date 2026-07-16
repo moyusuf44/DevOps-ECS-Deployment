@@ -17,3 +17,28 @@ variable "target_group_arn" {
 variable "alb_security_group_id" {
   type = string
 }
+
+variable "code_server_password" {
+  type = string 
+  sensitive = true 
+}
+
+variable "cluster_name" {
+  type = string
+}
+
+variable "image_id" {
+  type = string 
+}
+
+variable "cpu" {
+  type = string 
+}
+
+variable "memory" {
+  type = string 
+}
+
+variable "desired_count" {
+  type = string 
+}

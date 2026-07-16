@@ -13,19 +13,19 @@ resource "aws_ecs_task_definition" "this" {
 
     network_mode             = "awsvpc"
     
-    cpu                      = "1024"
-    memory                   = "2048"
+    cpu                      = var.cpu
+    memory                   = var.memory
 
     execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
 
     container_definitions   = jsonencode ([
         {
             name             = "code-server-terra"
-            image            = "280288329035.dkr.ecr.us-east-1.amazonaws.com/code-server-terra:v1"
+            image            = var.image_id
             environment = [
         {
             name  = "PASSWORD"  
-            value = "codeserverpassword123"
+            value = var.code_server_password
         }
     ]
             portMappings     = [
@@ -44,7 +44,7 @@ resource "aws_ecs_service" "this" {
     task_definition      = aws_ecs_task_definition.this.arn
     launch_type          = "FARGATE"
 
-    desired_count        = 2
+    desired_count        = var.desired_count
 
     network_configuration {
         subnets          = var.subnet_ids

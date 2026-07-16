@@ -12,6 +12,12 @@ module "ecs" {
     subnet_ids = module.vpc.public_subnets
     security_group = module.vpc.ecs_security_group_id
     alb_security_group_id = module.alb.alb_security_group_id
+    cluster_name = var.cluster_name
+    code_server_password = var.code_server_password
+    image_id = var.image_id
+    cpu = var.cpu
+    memory = var.memory
+    desired_count = var.desired_count
 }
 
 module "alb" {  
@@ -19,9 +25,8 @@ module "alb" {
   
     vpc_id = var.vpc_id
     subnet_ids = module.vpc.public_subnets
-    #security_group = module.vpc.ecs_security_group
-    #security_group = module.vpc.alb_security_group_id
     certificate_arn = module.acm.certificate_arn
+    health_check_path = var.health_check_path
 }
 
 module "acm" {
