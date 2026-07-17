@@ -33,3 +33,17 @@ jobs:
 
            - name: Push Docker Image 
              run: docker push 280288329035.dkr.ecr.us-east-1.amazonaws.com/code-server-terra:v1 
+
+           - name: Setup Terraform
+             uses: hashicorp/setup-terraform@v3
+
+           - name: Terraform init
+             working-directory: ./infrastructure-terra
+             run:   terraform init
+             
+           - name: Terraform apply
+             working-directory: ./infrastructure-terra  
+             run: terraform apply --auto-approve \
+                  -var="image_id=280288329035.dkr.ecr.us-east-1.amazonaws.com/code-server-terra:${{ github.sha }}" 
+
+
