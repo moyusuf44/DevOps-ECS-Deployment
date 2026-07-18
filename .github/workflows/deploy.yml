@@ -49,5 +49,5 @@ jobs:
               -var="image_id=280288329035.dkr.ecr.us-east-1.amazonaws.com/code-server-terra:${{ github.sha }}" \
               -var="cloudflare_api_token=${{ secrets.CLOUDFLARE_API_TOKEN }}" \
               -var="code_server_password=${{ secrets.CODE_SERVER_PASSWORD }}"
-
+              -var="cluster_name"=${{ secrets.CLUSTER_NAME}}
 
