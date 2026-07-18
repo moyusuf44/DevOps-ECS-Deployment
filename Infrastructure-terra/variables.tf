@@ -24,10 +24,6 @@ variable "zone_name" {
   description = "Cloudflare DNS zone name"
 }
 
-variable "vpc_id" {
-  type = string 
-}
-
 variable "code_server_password" {
   type = string 
   sensitive = true 
