@@ -5,7 +5,7 @@ resource "aws_lb" "this" {
     
     security_groups = [aws_security_group.alb.id]
     
-    subnets = var.subnet_ids
+    subnets = subnets = module.vpc.public_subnets
 }
 
 resource "aws_lb_target_group" "this" {
@@ -59,7 +59,7 @@ resource "aws_lb_listener" "https" {
 
 resource "aws_security_group" "alb" {
     name = "code-server-alb-sg"
-    vpc_id = var.vpc_id
+    vpc_id = module.vpc.vpc_id
 
     ingress {
         from_port = 443
