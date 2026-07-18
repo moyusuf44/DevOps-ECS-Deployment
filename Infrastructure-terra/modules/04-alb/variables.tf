@@ -10,3 +10,6 @@ variable "health_check_path" {
   type = string 
 }
 
+variable "subnets" {
+  type        = list(string)
+}
