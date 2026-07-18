@@ -42,3 +42,7 @@ variable "memory" {
 variable "desired_count" {
   type = string 
 }
+
+variable "subnets" {
+  type = list(string)
+}

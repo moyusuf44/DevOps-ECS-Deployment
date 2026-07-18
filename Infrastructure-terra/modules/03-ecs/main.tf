@@ -47,7 +47,7 @@ resource "aws_ecs_service" "this" {
     desired_count        = var.desired_count
 
     network_configuration {
-        subnets          = module.vpc.public_subnets
+        subnets          = var.subnets
         security_groups  = [var.security_group]
         assign_public_ip = true 
     }
