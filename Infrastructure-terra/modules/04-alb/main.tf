@@ -5,7 +5,7 @@ resource "aws_lb" "this" {
     
     security_groups = [aws_security_group.alb.id]
     
-    subnets = subnets = module.vpc.public_subnets
+    subnets = module.vpc.public_subnets
 }
 
 resource "aws_lb_target_group" "this" {
