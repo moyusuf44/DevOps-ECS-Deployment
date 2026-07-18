@@ -24,7 +24,7 @@ module "alb" {
     source = "./modules/04-alb"
   
     vpc_id = var.vpc_id
-    subnet_ids = module.vpc.public_subnets
+    subnets = module.vpc.public_subnets
     certificate_arn = module.acm.certificate_arn
     health_check_path = var.health_check_path
 }
