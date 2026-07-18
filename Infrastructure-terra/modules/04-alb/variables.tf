@@ -13,3 +13,7 @@ variable "health_check_path" {
 variable "subnets" {
   type        = list(string)
 }
+
+variable "vpc_id" {
+  type = string
+}

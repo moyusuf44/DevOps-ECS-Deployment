@@ -59,7 +59,7 @@ resource "aws_lb_listener" "https" {
 
 resource "aws_security_group" "alb" {
     name = "code-server-alb-sg"
-    vpc_id = module.vpc.vpc_id
+    vpc_id = var.vpc_id
 
     ingress {
         from_port = 443
