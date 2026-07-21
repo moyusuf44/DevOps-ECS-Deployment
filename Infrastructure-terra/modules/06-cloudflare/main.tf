@@ -27,6 +27,17 @@ resource "cloudflare_dns_record" "app" {
   ttl = 1
 }
 
+resource "cloudflare_dns_record" "root_app" {
+  zone_id = data.cloudflare_zone.this.id
+
+  name = "@"
+  type = "CNAME"
+  content = var.alb_dns_name
+
+  proxied = true
+  ttl = 1
+}
+
 data "cloudflare_zone" "this" {
     filter = {
         name = var.zone_name
