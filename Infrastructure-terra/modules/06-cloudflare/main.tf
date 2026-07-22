@@ -1,8 +1,8 @@
 resource "cloudflare_dns_record" "acm_validation" {
 
   for_each = {
-    for dvo in var.domain_validation_options :
-    dvo.domain_name => dvo
+    for idx, dvo in var.domain_validation_options :
+    idx => dvo
   }
 
   zone_id = data.cloudflare_zone.this.id
