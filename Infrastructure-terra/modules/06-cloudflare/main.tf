@@ -1,3 +1,9 @@
+data "cloudflare_zone" "this" {
+    filter = {
+        name = var.zone_name
+    }
+}
+
 resource "cloudflare_dns_record" "acm_validation" {
 
   for_each = {
@@ -38,8 +44,4 @@ resource "cloudflare_dns_record" "root_app" {
   ttl = 1
 }
 
-data "cloudflare_zone" "this" {
-    filter = {
-        name = var.zone_name
-    }
-}
+

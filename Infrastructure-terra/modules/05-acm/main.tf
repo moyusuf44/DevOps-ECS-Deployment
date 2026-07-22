@@ -12,17 +12,21 @@ resource "aws_acm_certificate" "this" {
   }
 }
 
-resource "aws_route53_record" "validation" {
-    for_each = {
-        for dvo in aws_acm_certificate.this.domain_validation_options:
-        dvo.domain_name => dvo  #allows multiple domains to be used by same acm cert
-    }
-    
-    zone_id = var.zone_id
+data "cloudflare_zone" "this" {
+  name = var.domain_name
+}
 
-    name = each.value.resource_record_name
-    type = each.value.resource_record_type
-    ttl = 60
-    records = [each.value.resource_record_value]
+resource "cloudflare_record" "validation" {
+  for_each = {
+    for dvo in aws_acm_certificate.this.domain_validation_options :
+    dvo.domain_name => dvo
+  }
+
+  zone_id = data.cloudflare_zone.this.id
+
+  name  = each.value.resource_record_name
+  type  = each.value.resource_record_type
+  value = each.value.resource_record_value
+  ttl   = 60
 }
 

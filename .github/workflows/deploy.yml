@@ -41,7 +41,14 @@ jobs:
              working-directory: ./Infrastructure-terra
              run:   terraform init
              
-           - name: Terraform apply
+           - name: Terraform apply (acm cert)
+             working-directory: ./Infrastructure-terra    
+             run: terraform apply -target=module.acm -auto-approve
+
+           - name: Wait for DNS propagation
+             run: sleep 30  
+
+           - name: Terraform apply (full)
              working-directory: ./Infrastructure-terra  
              run: | 
               terraform apply \

@@ -5,3 +5,4 @@ output "certificate_arn" {
 output "domain_validation_options" {
   value = aws_acm_certificate.this.domain_validation_options
 }
+
