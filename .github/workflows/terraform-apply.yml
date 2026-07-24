@@ -29,8 +29,9 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply ACM (stage 1)
+        
         run: terraform apply -target=module.acm -auto-approve
-
+        working-directory: ./Infrastructure-terra
       - name: Terraform Apply full (stage 2)
         working-directory: ./Infrastructure-terra
         run: |
