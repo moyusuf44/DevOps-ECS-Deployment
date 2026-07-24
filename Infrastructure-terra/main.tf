@@ -48,6 +48,11 @@ module "cloudflare" {
 }
 
 resource "aws_acm_certificate_validation" "this" {
-    certificate_arn = module.acm.certificate_arn
-    validation_record_fqdns = module.cloudflare.validation_record_fqdns
+  certificate_arn = module.acm.certificate_arn
+
+  validation_record_fqdns = module.cloudflare.validation_record_fqdns
+
+  depends_on = [
+    module.cloudflare
+  ]
 }
