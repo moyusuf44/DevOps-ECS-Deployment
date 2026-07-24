@@ -31,7 +31,6 @@ jobs:
       - name: Terraform Apply ACM (stage 1)
         working-directory: ./Infrastructure-terra
         run: terraform apply -target=module.acm -auto-approve
-        
 
       - name: Terraform Apply full (stage 2)
         working-directory: ./Infrastructure-terra
