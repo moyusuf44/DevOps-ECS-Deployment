@@ -13,7 +13,7 @@ resource "aws_acm_certificate" "this" {
 }
 
 data "cloudflare_zone" "this" {
-  filter {
+  filter = {
     name = var.domain_name
   }
 }
